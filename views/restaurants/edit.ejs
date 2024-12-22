@@ -1,0 +1,62 @@
+<% layout('layouts/boilerplate') %>
+
+    <div class="row">
+        <h1 class="text-center">Edit Restaurant</h1>
+        <div class="col-md-6 offset-md-3">
+            <form action="/restaurants/<%= restaurant._id %>?_method=PUT" method="POST" novalidate
+                class="validated-form" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label" for="title">Title</label>
+                    <input class="form-control" type="text" id="title" name="restaurant[title]"
+                        value="<%= restaurant.title %>" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="location">Location</label>
+                    <input class="form-control" type="text" id="location" name="restaurant[location]"
+                        value="<%= restaurant.location %>" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="price">Price per person</label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="price-label">$</span>
+                        <input type="text" class="form-control" id="price" value="<%= restaurant.price %>"
+                            aria-label="price" aria-describedby="price-label" name="restaurant[price]" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="description">Description</label>
+                    <textarea class="form-control" type="text" id="description" name="restaurant[description]"
+                        required><%= restaurant.description %></textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Add more images</label>
+                    <input class="form-control" type="file" id="formFile" name="image" multiple>
+                </div>
+                <div class="mb-3">
+                    <% restaurant.images.forEach(function(img, i) {  %>
+                    <!-- mongoose virtual 'thumbnail' -->
+                    <img src="<%=img.thumbnail %>" class="img-thumbnail" alt="">
+                    <div class="form-check-inline">
+                        <input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%=img.filename%>">
+                    </div>
+                    <label for="image-<%=i%>">Delete?</label>
+                    <% })%>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-success">Update Restaurant</button>
+                </div>
+            </form>
+        </div>
+    </div>

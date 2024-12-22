@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Chinese Restaurants</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+        crossorigin="anonymous">
+
+    <script id="search-js" defer src="https://api.mapbox.com/search-js/v1.0.0-beta.19/web.js"></script>
+    <script>
+        const accessToken = 'pk.eyJ1IjoicGVuZ3l1MTk5NXdhd2EiLCJhIjoiY2x1N2V4ajg5MDVhNjJrcDRvODRoZXdxNCJ9.19FUlX2bP5hA-IWFC_mv6Q';
+
+        const script = document.getElementById('search-js');
+        script.onload = function () {
+            mapboxsearch.autofill({
+                accessToken
+            });
+        };
+    </script>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: relative;
+            top: 0;
+            bottom: 0;
+        }
+    </style>
+    <link rel="stylesheet" href="/stylesheets/app.css">
+</head>
+
+<body class="d-flex flex-column vh-100">
+    <%- include('../partials/navbar') %>
+        <main class="container mt-5">
+            <%- include('../partials/flash') %>
+                <%- body %>
+        </main>
+        <%- include('../partials/footer') %>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+                integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+                crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+                integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+                crossorigin="anonymous"></script>
+            <script src='/javascripts/validateForms.js'></script>
+</body>
+
+</html>
